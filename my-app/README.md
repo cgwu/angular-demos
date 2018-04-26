@@ -1,3 +1,12 @@
+添加组件:
+ng generate component user-item
+
+VSCode扩展：
+Angular, TypeScript and HTML Snippets for VS Code
+Angular v5 TypeScript Snippets for VS Code
+
+
+----------------------------------------------
 # MyApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.4.
