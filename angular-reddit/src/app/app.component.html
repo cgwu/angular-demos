@@ -1,0 +1,28 @@
+<form class="ui large form segment">
+  <h3 class="ui header">Add a link</h3>
+
+  <div class="field">
+    <label for="title">Title:</label>
+    <input type="text" name='title' #newTitle>
+  </div>
+
+  <div class="field">
+      <label for="title">Link:</label>
+      <input type="text" name='Link' #newLink>
+    </div>
+
+    <!-- #newTitle syntax is called a 'resolve',
+      represents this input DOM element(HTMLInputElement) -->
+  <button (click)="addArticle(newTitle, newLink)"
+    class="ui positive right floated button">
+    Sumit Link
+  </button>
+</form>
+
+<!-- *ngFor="let singleArticle of articles"  -->
+<div class="ui grid posts">
+    <app-article 
+      *ngFor="let singleArticle of sortedArticles()" 
+      [article]="singleArticle">
+    </app-article>
+</div>
