@@ -15,14 +15,24 @@
       represents this input DOM element(HTMLInputElement) -->
   <button (click)="addArticle(newTitle, newLink)"
     class="ui positive right floated button">
-    Sumit Link
+    Submit Link
   </button>
 </form>
+
+<div [ngSwitch]="currentArticle.votes">
+  <div *ngSwitchCase="1" [style.background-color]="'yellow'">一票</div>
+  <div *ngSwitchCase="2" [ngStyle]="{color:'white', 'background-color':'blue'}">二票</div>
+  <div *ngSwitchDefault>其它数目</div>
+</div>
 
 <!-- *ngFor="let singleArticle of articles"  -->
 <div class="ui grid posts">
     <app-article 
-      *ngFor="let singleArticle of sortedArticles()" 
-      [article]="singleArticle">
+      *ngFor="let singleArticle of sortedArticles(); let i = index" 
+      [article]="singleArticle"
+      [index] = "i"
+      (putRingOnIt)="ringWasPlaced($event)"
+      (click)='clicked(singleArticle)'
+      [class.selected]='isSelected(singleArticle)'>
     </app-article>
 </div>

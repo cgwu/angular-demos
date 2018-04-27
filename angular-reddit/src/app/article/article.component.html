@@ -5,7 +5,11 @@
   </div>
 </div>
 <div class="twelve wide column">
-  <a href="{{ article.link }}" class="ui large header">{{ article.title }}</a>
+  <hr *ngIf="index % 2 == 0">
+  <span *ngIf="isOddRow()">odd row</span>
+  <a href="{{ article.link }}" class="ui large header">
+    {{ index % 2 == 1 ? '奇':'偶' }}
+    {{ article.title }}</a>
   <div class="meta">({{ article.domain() }})</div>
   <ul class="ui big horizontal list voters">
     <li class='item'>

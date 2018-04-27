@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Article } from './article/article.model';
 
 @Component({
@@ -9,12 +9,18 @@ import { Article } from './article/article.model';
 export class AppComponent {
   articles: Article[];
 
+  private currentArticle: Article;
+
+  @Output() onArticleSelected: EventEmitter<Article>;
+
   constructor() {
+    this.onArticleSelected = new EventEmitter();
     this.articles = [
       new Article('Angular 2', 'http://angular.io', 3),
       new Article('Fullstack', 'http://fullstack.io', 2),
       new Article('Angular Homepage', 'http://angular.io', 1)
     ];
+    this.currentArticle = this.articles[0];
   }
 
   addArticle(title: HTMLInputElement, link: HTMLInputElement): boolean {
@@ -27,6 +33,21 @@ export class AppComponent {
 
   sortedArticles() {
     return this.articles.sort((a: Article, b: Article) => b.votes - a.votes);
+  }
+
+  ringWasPlaced(message: string) {
+    console.log(`事件产生: ${message}`);
+  }
+
+  clicked(article: Article) {
+    this.currentArticle = article;
+    this.onArticleSelected.emit(article);
+    console.log(`设置当前文章: ${article.title}`);
+  }
+
+  isSelected(article: Article) {
+    if (!article || !this.currentArticle) return false;
+    return this.currentArticle.title === article.title;
   }
 
 }
