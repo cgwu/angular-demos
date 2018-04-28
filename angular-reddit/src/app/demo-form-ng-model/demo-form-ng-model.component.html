@@ -1,5 +1,7 @@
 <div class="ui info message">
-  The product name is : {{ productName }}
+  The product name is : {{ productName }}<br>
+  (来自另一个组件里的修改，证明是singleton)
+  userName: {{ userService.getUser()? userService.getUser().name: '' }}
 </div>
 <form [formGroup]="myForm"
       (ngSubmit)="onSubmit(myForm.value)"
