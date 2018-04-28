@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { ArticleComponent } from './article/article.component';
 import { DemoFormSkuComponent } from './demo-form-sku/demo-form-sku.component';
 import { DemoFormSkuWithBuilderComponent } from './demo-form-sku-with-builder/demo-form-sku-with-builder.component';
+import { DemoFormNgModelComponent } from './demo-form-ng-model/demo-form-ng-model.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { DemoFormSkuWithBuilderComponent } from './demo-form-sku-with-builder/de
     AppComponent,
     ArticleComponent,
     DemoFormSkuComponent,
-    DemoFormSkuWithBuilderComponent
+    DemoFormSkuWithBuilderComponent,
+    DemoFormNgModelComponent
   ],
   imports: [
     BrowserModule,

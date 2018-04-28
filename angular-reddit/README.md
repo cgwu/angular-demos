@@ -1,4 +1,5 @@
 ref:
+    https://github.com/xiaomoinfo/Angular2 (更好)
     https://github.com/Coralma/angular2
 使用的UI库： https://semantic-ui.com/
 
