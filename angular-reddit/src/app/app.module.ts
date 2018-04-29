@@ -4,6 +4,7 @@ import {
   FormsModule,
   ReactiveFormsModule
 } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { ArticleComponent } from './article/article.component';
@@ -12,6 +13,7 @@ import { DemoFormSkuWithBuilderComponent } from './demo-form-sku-with-builder/de
 import { DemoFormNgModelComponent } from './demo-form-ng-model/demo-form-ng-model.component';
 import { UserDemoInjectorComponent } from './user-demo-injector/user-demo-injector.component';
 import { UserService } from './services/user.service';
+import { SimpleHttpComponent } from './simple-http/simple-http.component';
 
 
 @NgModule({
@@ -21,12 +23,14 @@ import { UserService } from './services/user.service';
     DemoFormSkuComponent,
     DemoFormSkuWithBuilderComponent,
     DemoFormNgModelComponent,
-    UserDemoInjectorComponent
+    UserDemoInjectorComponent,
+    SimpleHttpComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpModule
   ],
   providers: [
     //UserService // 自定义服务类，放在此处，可以自动构造注入. <==>
