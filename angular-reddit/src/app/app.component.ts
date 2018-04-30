@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { Article } from './article/article.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,7 @@ export class AppComponent {
 
   @Output() onArticleSelected: EventEmitter<Article>;
 
-  constructor() {
+  constructor(private router: Router) {
     this.onArticleSelected = new EventEmitter();
     this.articles = [
       new Article('Angular 2', 'http://angular.io', 3),

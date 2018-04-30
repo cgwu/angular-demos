@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { ArticleEx } from '../article/article.model';
 
 @Component({
@@ -17,6 +17,44 @@ export class SimpleHttpComponent implements OnInit {
   makeRequest():void {
     this.loading = true;
     this.http.request('http://jsonplaceholder.typicode.com/posts/1')
+    .subscribe((res: Response)=>{
+      this.data = res.json();
+      this.loading = false;
+    });
+  }
+
+  makePost():void {
+    this.loading = true;
+    this.http.request(
+      'http://jsonplaceholder.typicode.com/posts',
+      JSON.stringify({body: 'bar', title:'foo', userId: 1})
+    )
+    .subscribe((res: Response)=>{
+      this.data = res.json();
+      this.loading = false;
+    });
+  }
+
+  makeDelete():void {
+    this.loading = true;
+    this.http.delete('http://jsonplaceholder.typicode.com/posts/1')
+    .subscribe((res: Response)=>{
+      this.data = res.json();
+      this.loading = false;
+    });
+  }
+
+  makeHeaders():void {
+    const headers: Headers = new Headers();
+    // Headers starting with an X- are typically reserved for nonstandard usage
+    // i.e no future standard will introduce a header starting with X- .
+    headers.append('X-API-TOKEN', 'ng-book'); 
+
+    const opts: RequestOptions = new RequestOptions();
+    opts.headers = headers;
+
+    this.loading = true;
+    this.http.get('http://jsonplaceholder.typicode.com/posts/1', opts)
     .subscribe((res: Response)=>{
       this.data = res.json();
       this.loading = false;
