@@ -42,7 +42,8 @@ $ ng generate component main --module products
 子模块参考文章：
 https://blog.csdn.net/zhao_tuo/article/details/72822105
 
-
+生成guard判断是否登陆:
+ng g guard logged-in
 
 REST WIKI:
 https://en.wikipedia.org/wiki/Representational_state_transfer

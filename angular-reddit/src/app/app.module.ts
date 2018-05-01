@@ -22,6 +22,10 @@ import {
   ProductsModule
 } from './products/products.module';
 import { ProductsComponent } from './products/products.component';
+import { LoginComponent } from './login/login.component';
+import { ProtectedComponent } from './protected/protected.component';
+import { AUTH_PROVIDERS } from './auth.service';
+import { LoggedInGuard } from './logged-in.guard';
 
 const routes: Routes = [
   // basic routes
@@ -31,6 +35,13 @@ const routes: Routes = [
   { path: 'contact', component: ContactComponent },
   { path: 'contactus', redirectTo: 'contact'},
 
+    // authentication demo
+    { path: 'login', component: LoginComponent },
+    {
+      path: 'protected',
+      component: ProtectedComponent,
+      canActivate: [ LoggedInGuard ]
+    },
 
   // nested
   {
@@ -51,7 +62,9 @@ const routes: Routes = [
     SimpleHttpComponent,
     AboutComponent,
     ContactComponent,
-    HomeComponent
+    HomeComponent,
+    LoginComponent,
+    ProtectedComponent
   ],
   imports: [
     BrowserModule,
@@ -63,11 +76,17 @@ const routes: Routes = [
     ProductsModule
   ],
   providers: [
-    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    // Default: PathLocationStrategy, which is what we call HTML5 routing.
+    { provide: LocationStrategy, useClass: HashLocationStrategy },  // use hash#, e.g. `/#/home`
     { provide: APP_BASE_HREF, useValue: '/' }, // <==> <base href="/"> on index.html
     //UserService // 自定义服务类，放在此处，可以自动构造注入. <==>
     { provide: UserService, useClass: UserService },
-    { provide: 'API_URL', useValue: 'http://my.api.com/v1' }
+    { provide: 'API_URL', useValue: 'http://my.api.com/v1' },
+
+    // uncomment this for "hash-bang" routing
+    // { provide: LocationStrategy, useClass: HashLocationStrategy }
+    AUTH_PROVIDERS,
+    LoggedInGuard
   ],
   bootstrap: [AppComponent]
 })
