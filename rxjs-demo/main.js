@@ -20,6 +20,7 @@ require(["./domReady!", "./node_modules/@reactivex/rxjs/dist/global/Rx.min"], fu
     .subscribe(count => console.log(`${new Date()} Clicked ${count} times.`));
     */
 
+    /*
     var observable = Rx.Observable.create(function(observer){
         observer.next(1);
         observer.next(2);
@@ -36,10 +37,24 @@ require(["./domReady!", "./node_modules/@reactivex/rxjs/dist/global/Rx.min"], fu
         complete: () => console.log('done')
     });
     console.log('just after subscribe');
-    subscription.unsubscribe();
+    // subscription.unsubscribe();
+    */
 
     // var observable = Rx.Observable.from([10,20,30]);
     // var subscription = observable.subscribe(x => console.log(x));
     // subscription.unsubscribe();
 
+    //A Subject is like an Observable, but can multicast to many Observers. 
+    //Subjects are like EventEmitters: they maintain a registry of many listeners.
+    var subject = new Rx.Subject();
+    subject.subscribe({
+        next: (v) => console.log('observer A: ' + v)
+    });
+    subject.subscribe({
+        next: (v) => console.log('observer B: ' + v)
+    });
+    // subject.next(1);
+    // subject.next(2);
+    var observable = Rx.Observable.from([10,20,30]);
+    observable.subscribe(subject);
 });
